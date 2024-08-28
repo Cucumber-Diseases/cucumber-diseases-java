@@ -1,20 +1,19 @@
-# Cucumber Disease #12 - "Test Code Impurity"
+# Cucumber Disease #11 - "Dependent on Class State"
 
 ## Description
-“Test Code Impurity” occurs when the step definition contains significant business logic, resulting in tightly coupled test code. In other words, the test code becomes heavily reliant on the syntax and intricacies of the system under test (SUT). This tight coupling makes the test suite challenging to maintain and less adaptable to changes in the SUT.
+This code smell occurs when everything is stored either in a context or in the fields of your step implementation. Often, this state is even duplicated because we prepared the state of the application previously. This can lead to tightly coupled tests that are difficult to maintain and understand.
 
 ## Impact
-* Coupling: The business logic embedded within step definitions creates a strong dependency between the test code and the SUT. Any changes to the business rules or system behavior can propagate throughout the entire test suite, leading to maintenance difficulties.
-* Readability: When business logic is mixed with test code, it becomes harder to understand the purpose of each step. Developers may struggle to differentiate between actual test steps and implementation details.
-* Maintenance: As the system evolves, maintaining and updating the test code becomes cumbersome. Changes to business rules may require modifications across multiple step definitions, increasing the risk of errors.
-* Scalability Issues: Complex step definitions hinder scalability. As the number of scenarios grows, managing intertwined business logic becomes unwieldy.
-* Reusabilty: Tests become less reusable as they are tightly coupled to the system's implementation.
+* Readability: Tests become harder to understand as the state of the application is scattered across multiple locations.
+* Maintainability: Changes to the system under test may require extensive modifications to step definitions, increasing maintenance effort.
+* Coupling: Tests become tightly coupled to the system's state, making them less reusable and more prone to breaking. Further they become less reliable if the state of the application is not properly managed or controlled.
+* Complexity: The codebase becomes more complex and difficult to manage due to the use of class state over different steps.
 
 ## Your task
 
 TODO: describe details of exercise
 
-* Separation of Concerns: Extract business logic from step definitions. Keep the test code focused on expressing the intended behavior without diving into implementation details. Create separate utility methods or helper classes to encapsulate business rules.
-* Leverage Page Objects: Use page objects to encapsulate interactions with the UI, reducing the amount of business logic in step definitions.
-* Dependency Inversion: Introduce a test design where the test implementation defines interfaces to be fulfilled by utilities or drivers. By applying the principles of dependency inversion, you enable easy exchange of the test object (e.g., REST service instead of UI) while maintaining a clean separation between test code and SUT.
-
+* **Pass Data Explicitly**: Reduce the reliance on class state by passing data directly to step definitions as parameters.
+* **Avoid Premature Data Gathering**: Gather data only when needed. If data can be collected later in the scenario, defer its retrieval to a later step and pass it to the subsequent steps as necessary.
+* **Reuse Application State**: Don't hold data twice in your application and in your test classes. Prefer the usage of test data in your application state for example a database instead of temporary storage in your objects.
+* **Use Scenario Context Sparingly**: While scenario context can be useful, avoid overusing it. Limit the amount of data stored in the context to essential information. Consider whether a step really needs access to the entire context or if a smaller subset suffices.
