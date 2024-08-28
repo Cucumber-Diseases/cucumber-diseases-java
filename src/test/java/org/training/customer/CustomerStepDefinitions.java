@@ -159,10 +159,10 @@ public class CustomerStepDefinitions {
     @Then("the second customer can be found")
     public void theSecondCustomerCanBeFound() {
         customerService.addCustomer(secondFirstName, secondLastName, DEFAULT_BIRTHDAY);
-        var customer = customerService.searchCustomers(secondFirstName, secondLastName);
+        var customer = customerService.searchCustomer(secondFirstName, secondLastName);
 
-        Assertions.assertThat(customer).isNotNull();
-    }
+        Assertions.assertThat(customer.firstName).isEqualTo(secondFirstName);
+        Assertions.assertThat(customer.lastName).isEqualTo(secondLastName);}
 
     @Then("the number of customers found is {int}")
     public void theNumberOfCustomersFoundIs(int expectedCount) {
