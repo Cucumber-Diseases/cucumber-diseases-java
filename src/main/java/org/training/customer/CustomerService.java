@@ -11,7 +11,7 @@ public class CustomerService {
 
     public void addCustomer(String firstName, String lastName, LocalDate birthday) {
 
-        if (firstName.isEmpty() || lastName.isEmpty()) {
+        if (firstName == null || firstName.isEmpty() || lastName == null || lastName.isEmpty()) {
             throw new IllegalArgumentException("Mandatory name parameter is missing");
         }
 
