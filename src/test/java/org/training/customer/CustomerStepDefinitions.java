@@ -91,7 +91,7 @@ public class CustomerStepDefinitions {
 
     @Then("the second customer creation should fail")
     public void theSecondCustomerCreationShouldFail() {
-        Throwable error = catchThrowable(()->customerService.addCustomer(secondFirstName, secondLastName, DEFAULT_BIRTHDAY));
+        Throwable error = catchThrowable(() -> customerService.addCustomer(secondFirstName, secondLastName, DEFAULT_BIRTHDAY));
 
         Assertions.assertThat(error).isNotNull().hasMessage("Customer already exists");
     }
@@ -138,7 +138,8 @@ public class CustomerStepDefinitions {
     public void theCustomerCanBeFound() {
         var customer = customerService.searchCustomer(firstName, lastName);
 
-        Assertions.assertThat(customer).isNotNull();
+        Assertions.assertThat(customer.firstName).isEqualTo(firstName);
+        Assertions.assertThat(customer.lastName).isEqualTo(lastName);
     }
 
     @Then("the customer can not be found")
@@ -162,7 +163,8 @@ public class CustomerStepDefinitions {
         var customer = customerService.searchCustomer(secondFirstName, secondLastName);
 
         Assertions.assertThat(customer.firstName).isEqualTo(secondFirstName);
-        Assertions.assertThat(customer.lastName).isEqualTo(secondLastName);}
+        Assertions.assertThat(customer.lastName).isEqualTo(secondLastName);
+    }
 
     @Then("the number of customers found is {int}")
     public void theNumberOfCustomersFoundIs(int expectedCount) {
