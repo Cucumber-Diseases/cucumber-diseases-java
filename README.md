@@ -9,7 +9,7 @@ For the workshop Java 17 or later is a pre-requisite for building und runnnig th
 
 ### Local
 
-* Clone the repository localy
+* Clone the repository localy (find more details about the repostory structure in our [Repository Tutorial](https://cucumber-diseases.github.io/repos/)
 * Import the repository in your favourite IDE and configure the Maven build
 * Install a Cucumber extension or plugin in you IDE
    * IntelliJ IDEA: https://www.jetbrains.com/help/idea/cucumber-support.html
@@ -43,7 +43,8 @@ Since gitpod.io uses Linux, the same restrictions as on any other Unix distribut
 
 6. After the installation is done, you can open files via the Java Project explorer, edit the code, and select _Run Tests_ on either the test folder or the _RunAllCucumberTests_ class file.
 
-## Refactoring Exercises
+## 📝 Refactoring Exercises
 
-The code contains multiple Cucumber smells. It's recommended to follow the suggested order. Each smell and exercise is described in a seperate assingment.
+The code in the `main` branch contains multiple Cucumber smells. The smells can be removed by a variety of refactoring exercises. It's recommended to follow the suggested order. You'll find all exercise section in our [Code Smells Documentation]((https://cucumber-diseases.github.io/exercise/).
+
 
