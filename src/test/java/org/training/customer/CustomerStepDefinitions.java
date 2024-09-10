@@ -7,7 +7,6 @@ import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,6 @@ public class CustomerStepDefinitions {
     private static final LocalDate DEFAULT_BIRTHDAY = LocalDate.of(1995, 1, 1);
 
     private final CustomerService customerService;
-    private LocalDate birthday;
     private String firstName;
     private String lastName;
     private String secondLastName;
@@ -38,11 +36,6 @@ public class CustomerStepDefinitions {
     @Given("the customer last name is {string}")
     public void theCustomerLastNameIs(String lastName) {
         this.lastName = lastName;
-    }
-
-    @Given("the customer's birthday is {}")
-    public void theCustomersBirthdayIs(String date) {
-        this.birthday = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
 
     @Given("the customer name is {} {}")
