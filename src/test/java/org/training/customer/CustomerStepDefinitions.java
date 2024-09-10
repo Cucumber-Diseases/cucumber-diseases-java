@@ -91,9 +91,9 @@ public class CustomerStepDefinitions {
         count = customerService.searchCustomers().size();
     }
 
-    @When("the customer Sabine Mustermann is searched")
-    public void theCustomerSabineMustermannIsSearched() {
-        count = customerService.searchCustomers("Sabine", "Mustermann").size();
+    @When("the customer {} {} is searched")
+    public void theCustomerIsSearched(String firstName, String lastName) {
+        count = customerService.searchCustomers(firstName, lastName).size();
     }
 
     @Then("the customer can be found")
@@ -104,12 +104,12 @@ public class CustomerStepDefinitions {
         Assertions.assertThat(customer.lastName).isEqualTo(lastName);
     }
 
-    @Then("the customer Sabine Mustermann can be found")
-    public void theCustomerSabineMustermannCanBeFound() {
-        var customer = customerService.searchCustomer("Sabine", "Mustermann");
+    @Then("the customer {} {} can be found")
+    public void theCustomerCanBeFound(String firstName, String lastName) {
+        var customer = customerService.searchCustomer(firstName, lastName);
 
-        Assertions.assertThat(customer.firstName).isEqualTo("Sabine");
-        Assertions.assertThat(customer.lastName).isEqualTo("Mustermann");
+        Assertions.assertThat(customer.firstName).isEqualTo(firstName);
+        Assertions.assertThat(customer.lastName).isEqualTo(lastName);
     }
 
     @Then("the second customer can be found")
