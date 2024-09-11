@@ -4,49 +4,36 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.assertj.core.api.Assertions;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
+import org.training.customer.driver.CustomerServiceDriver;
 
 public class CustomerStepDefinitions {
 
-    private static final LocalDate DEFAULT_BIRTHDAY = LocalDate.of(1995, 1, 1);
+    private final CustomerServiceDriver customerServiceDriver;
 
-    private final CustomerService customerService;
-    private Exception error;
-    private int count;
-
-    public CustomerStepDefinitions(CustomerService customerService) {
-        this.customerService = customerService;
+    public CustomerStepDefinitions(CustomerServiceDriver customerServiceDriver) {
+        this.customerServiceDriver = customerServiceDriver;
     }
 
     @When("the customer {} {} is created")
     @When("an invalid customer {} {} is created")
     @When("the second customer {} {} is created")
     public void createCustomerAndHandleException(String firstName, String lastName) {
-        try {
-            customerService.addCustomer(firstName, lastName, DEFAULT_BIRTHDAY);
-        } catch (IllegalArgumentException e) {
-            error = e;
-        }
+        customerServiceDriver.createCustomerAndHandleException(firstName, lastName);
     }
 
     @Then("the customer creation should be successful")
     public void theCustomerCreationShouldBeSuccessful() {
-        Assertions.assertThat(error).isNull();
+        customerServiceDriver.createCustomerWasSuccessful();
     }
 
     @Then("the customer creation should fail")
     public void theCustomerCreationShouldFail() {
-        Assertions.assertThat(error).isNotNull();
-        Assertions.assertThat(error).hasMessage("Mandatory name parameter is missing");
+        customerServiceDriver.createCustomerFailed("Mandatory name parameter is missing");
     }
 
     @Then("the second customer creation should fail")
     public void theSecondCustomerCreationShouldFail() {
-        Assertions.assertThat(error).isNotNull().hasMessage("Customer already exists");
+        customerServiceDriver.createCustomerFailed("Customer already exists");
     }
 
     @Given("there are no customers")
@@ -56,34 +43,27 @@ public class CustomerStepDefinitions {
     @Given("there is a customer")
     @Given("there are some customers")
     public void thereAreSomeCustomers(DataTable customerTable) {
-        List<Map<String, String>> rows = customerTable.asMaps(String.class, String.class);
-
-        for (Map<String, String> col : rows) {
-            customerService.addCustomer(col.get("firstname"), col.get("lastname"), DEFAULT_BIRTHDAY);
-        }
+        customerServiceDriver.createCustomers(customerTable.asMaps(String.class, String.class));
     }
 
     @When("all customers are searched")
     public void allCustomersAreSearched() {
-        count = customerService.searchCustomers().size();
+        customerServiceDriver.searchAllCustomers();
     }
 
     @When("the customer {} {} is searched")
     public void theCustomerIsSearched(String firstName, String lastName) {
-        count = customerService.searchCustomers(firstName, lastName).size();
+        customerServiceDriver.searchCustomer(firstName, lastName);
     }
 
     @Then("the customer {} {} can be found")
     @Then("the second customer {} {} can be found")
     public void theCustomerCanBeFound(String firstName, String lastName) {
-        var customer = customerService.searchCustomer(firstName, lastName);
-
-        Assertions.assertThat(customer.firstName).isEqualTo(firstName);
-        Assertions.assertThat(customer.lastName).isEqualTo(lastName);
+        customerServiceDriver.verifyCustomerFound(firstName, lastName);
     }
 
     @Then("the number of customers found is {int}")
     public void theNumberOfCustomersFoundIs(int expectedCount) {
-        Assertions.assertThat(count).isEqualTo(expectedCount);
+        customerServiceDriver.verifyNumberOfCustomersFound(expectedCount);
     }
 }
