@@ -18,20 +18,25 @@ For the workshop Java 17 or later is a pre-requisite for building und runnnig th
    * Eclipse: https://marketplace.eclipse.org/content/cucumber-eclipse-plugin
 
 #### Platform notes
-The VC Code Cucumber extension fails on any Unix distribution. It's recommended to use VS Code on Windows.
-
-Restrictions of missing Cucumber extension on Unix:
-* You won't have Gherkin support
-* You can't generate step definition
-* There is NO linkage between your feature files and step definition implementation
-* You are still able to edit all file and execute your Unit Tests.
+> [!IMPORTANT]
+> The VC Code Cucumber extension fails on any Unix distribution. It's recommended to use VS Code on Windows.
+>
+> Restrictions of missing Cucumber extension on Unix:  <br>
+> * You won't have Gherkin support
+> * You can't generate step definition
+> * There is NO linkage between your feature files and step definition implementation
+> * You are still able to edit all file and execute your Unit Tests.
+> 
 
 ### gitpod.io
-Since gitpod.io uses Linux, the same restrictions as on any other Unix distribution apply.
 
 <a href="https://gitpod.io/#https://github.com/Cucumber-Diseases/cucumber-diseases-java" target="_blank"> 
 <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod">
 </a>
+
+> [!IMPORTANT]
+> Since Gitpod VS Code Browser uses Linux, the same restrictions as on any other Unix distribution apply.
+
 
 1. [Login to GitHub](https://github.com/login) or [create an account](https://github.com/join).
 
@@ -43,6 +48,10 @@ Since gitpod.io uses Linux, the same restrictions as on any other Unix distribut
 5. Open  from the file tree on the left and wait for the Java installation to finish.
 
 6. After the installation is done, you can open files via the Java Project explorer, edit the code, and select _Run Tests_ on either the test folder or the _RunAllCucumberTests_ class file.
+
+
+> [!NOTE]
+> Another possibility to use Gitpod is [Gitpod with VS Code Desktop](https://www.gitpod.io/docs/references/ides-and-editors/vscode). 
 
 ## 📝 Refactoring Exercises
 
