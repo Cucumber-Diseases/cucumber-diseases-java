@@ -29,16 +29,16 @@ Restrictions of missing Cucumber extension on Unix:
 ### gitpod.io
 Since gitpod.io uses Linux, the same restrictions as on any other Unix distribution apply.
 
-<a href="https://gitpod.io/#https://github.com/rolger/cucumber-diseases-java" target="_blank"> 
+<a href="https://gitpod.io/#https://github.com/Cucumber-Diseases/cucumber-diseases-java" target="_blank"> 
 <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="Open in Gitpod">
 </a>
 
 1. [Login to GitHub](https://github.com/login) or [create an account](https://github.com/join).
 
-2. [Create a new workspace at Gitpod](https://gitpod.io/new/#https://github.com/rolger/cucumber-diseases-java).
+2. [Create a new workspace at Gitpod](https://gitpod.io/new/#https://github.com/Cucumber-Diseases/cucumber-diseases-java).
    This usually takes a little while, just be patient.
 
-3. At the bottom there is a Terminal window executing the Maven build the of project. Wait until _BUILD SUCCESS_ apprears in the log.
+4. At the bottom there is a Terminal window executing the Maven build the of project. Wait until _BUILD SUCCESS_ apprears in the log.
   
 5. Open  from the file tree on the left and wait for the Java installation to finish.
 
